@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;900&display=swap");
+/* 
+        Samet TÜRKMEN
+*/ 
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Mulish", sans-serif;
+    -webkit-overflow-scrolling: touch;
+    font-family: "Mulish", sans-serif;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+body {
+    padding: 20px;
+    background: #ebeef2;
+
+    .component {
+        &--prices {
+            max-width: 920px;
+            margin: 0 auto;
+            .title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 55px;
+
+                h3 {
+                    font-size: 42px;
+                    font-weight: 900;
+                }
+
+                label {
+                    width: 212px;
+                    height: 50px;
+                    background-color: #d4d9e0;
+                    border-radius: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    z-index: 1;
+                    cursor: pointer;
+                    &::before {
+                        content: "";
+                        width: 100px;
+                        height: 40px;
+                        border-radius: 40px;
+                        background-color: #fff;
+                        position: absolute;
+                        top: 5px;
+                        left: 5px;
+                        z-index: -1;
+                        box-shadow: 0px 15px 13px -12px rgba(134, 147, 164, 0.74);
+                        transition: 300ms left ease-in-out;
+                    }
+
+                    span {
+                        width: 100px;
+                        height: 40px;
+                        display: grid;
+                        place-items: center;
+                        font-weight: bold;
+                        font-size: 16px;
+
+                        color: #171922;
+                        opacity: 0.7;
+                        transition: 400ms opacity ease-in-out;
+                        &:first-child {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            .packages {
+                display: flex;
+                margin: 0 -20px;
+
+                .package {
+                    flex: 1;
+                    background-color: #fff;
+                    margin: 0 20px;
+                    padding: 45px;
+                    color: #171922;
+                    transition: 400ms box-shadow ease-in-out;
+                    display: grid; // Get started buton ayarlaması için
+                    place-items: center start;
+                    h6 {
+                        font-weight: bold;
+                        font-size: 28px;
+                        line-height: 35px;
+                        margin-bottom: 35px;
+                    }
+                    .price-info {
+                        margin-bottom: 30px;
+
+                        .price {
+                            font-weight: bold;
+                            font-size: 22px;
+                            line-height: 28px;
+
+                            span::before {
+                                content: attr(data-monthly-price);
+                            }
+                        }
+                        .description {
+                            font-weight: bold;
+                            font-size: 18px;
+                            line-height: 23px;
+                            opacity: 0.71;
+                            margin-top: 10px;
+                            margin-bottom: 30px;
+
+                            span::before {
+                                content: attr(data-monthly-text);
+                            }
+                        }
+                    }
+
+                    p {
+                        font-weight: 600;
+                        font-size: 16px;
+                        opacity: 0.71;
+                        margin-bottom: 35px;
+                    }
+                    .button {
+                        display: grid;
+                        align-items: center;
+                        place-items: center;
+                        height: 60px;
+                        width: 100%;
+                        border: 1px solid #171922;
+                        border-radius: 5px;
+
+                        font-size: 18px;
+                        font-weight: 600;
+                        color: #171922;
+                        transition: 400ms background-color ease-in-out, 400ms color ease-in-out;
+                    }
+                    &:hover {
+                        box-shadow: 0px 19px 50px -20px rgba(134, 147, 164, 0.739565);
+                        .button {
+                            background: #171922;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+            #price-switch {
+                display: none;
+                &:checked {
+                    & + .title {
+                        // price-switch checked olduğunda ondan sonra gelen title a gir
+                        label {
+                            &::before {
+                                left: 105px;
+                            }
+                            span {
+                                &:first-child {
+                                    opacity: 0.7;
+                                }
+                                &:last-child {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
+                        & + .packages {
+                            .package {
+                                .price-info {
+                                    .price span::before {
+                                        content: attr(data-yearly-price);
+                                    }
+                                    .description span::before {
+                                        content: attr(data-yearly-text);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
